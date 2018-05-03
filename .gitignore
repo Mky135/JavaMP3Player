@@ -28,6 +28,7 @@ out/**
 *.iml
 *.iws
 *.ipr
+*.xml
 
 # OS Garbage
 .DS_Store
