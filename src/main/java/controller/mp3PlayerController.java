@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 
 public class mp3PlayerController implements Initializable
 {
-    SongHandler songHandler = new SongHandler();
+    static SongHandler songHandler = new SongHandler();
 
     Thread timer;
     @FXML
@@ -36,6 +36,7 @@ public class mp3PlayerController implements Initializable
         System.out.println(songHandler.getStatus());
         playButton.setText(songHandler.getStatus());
         songName.setText(songHandler.getThisSongName());
+        songHandler.getMediaPlayer().setOnEndOfMedia((this::skip));
         startSlider();
     }
 
@@ -44,6 +45,7 @@ public class mp3PlayerController implements Initializable
         songHandler.skipSong();
         playButton.setText(songHandler.getStatus());
         songName.setText(songHandler.getThisSongName());
+        songHandler.getMediaPlayer().setOnEndOfMedia((this::skip));
     }
 
     public void back()
@@ -51,6 +53,7 @@ public class mp3PlayerController implements Initializable
         songHandler.back();
         playButton.setText(songHandler.getStatus());
         songName.setText(songHandler.getThisSongName());
+        songHandler.getMediaPlayer().setOnEndOfMedia((this::skip));
     }
 
     public void playSong()
@@ -58,6 +61,7 @@ public class mp3PlayerController implements Initializable
         songHandler.playSong(songBox.getValue());
         playButton.setText(songHandler.getStatus());
         songName.setText(songHandler.getThisSongName());
+        songHandler.getMediaPlayer().setOnEndOfMedia((this::skip));
 
         startSlider();
     }

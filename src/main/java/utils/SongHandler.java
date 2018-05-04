@@ -4,6 +4,7 @@ import com.mpatric.mp3agic.ID3v2;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
+import controller.mp3PlayerController;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
@@ -26,11 +27,6 @@ public class SongHandler
     MediaPlayer mediaPlayer;
     int currentIndex;
     Status status;
-
-    public static void main(String[] args) throws InvalidDataException, IOException, UnsupportedTagException
-    {
-
-    }
 
     public SongHandler()
     {
@@ -129,7 +125,6 @@ public class SongHandler
         currentSong = songs.get(currentIndex);
         current = new Media(files[currentIndex].toURI().toString());
         mediaPlayer = new MediaPlayer(current);
-
         if(status == Status.playing)
         { play(); }
         else
@@ -227,6 +222,11 @@ public class SongHandler
     {
 //        mediaPlayer.seek(new Duration(6000));
         mediaPlayer.seek(new Duration(seconds/1000));
+    }
+
+    public MediaPlayer getMediaPlayer()
+    {
+        return mediaPlayer;
     }
 
     enum Status

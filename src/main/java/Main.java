@@ -18,7 +18,9 @@ public class Main extends Application
         // Display the window
         stage.setScene(scene);
 //        stage.sizeToScene();
-        stage.setAlwaysOnTop(true);
+//        stage.setAlwaysOnTop(true);
+        stage.toFront();
+        stage.sizeToScene();
         stage.show();
 
     }
