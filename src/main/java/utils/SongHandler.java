@@ -8,6 +8,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -24,7 +25,7 @@ public class SongHandler
     Media current;
     MediaPlayer mediaPlayer;
     int currentIndex;
-    String status;
+    Status status;
 
     public static void main(String[] args) throws InvalidDataException, IOException, UnsupportedTagException
     {
@@ -49,38 +50,100 @@ public class SongHandler
         currentSong = songs.get(currentIndex);
         current = new Media(files[currentIndex].toURI().toString());
         mediaPlayer = new MediaPlayer(current);
-        status = "stopped";
+        status = Status.stopped;
     }
 
-    public void playSong(Mp3File song)
+    public void playSong(String songName)
     {
-         currentIndex = songs.indexOf(song);
-         currentSong = songs.get(currentIndex);
-         current = new Media(files[currentIndex].toURI().toString());
-         mediaPlayer = new MediaPlayer(current);
-         mediaPlayer.play();
+        mediaPlayer.stop();
+
+        Mp3File song = null;
+        for(int i = 0; i < files.length; i++)
+        {
+            if(files[i].getName().equalsIgnoreCase(songName))
+            {
+                song = songs.get(i);
+                break;
+            }
+        }
+        currentIndex = songs.indexOf(song);
+        currentSong = songs.get(currentIndex);
+        current = new Media(files[currentIndex].toURI().toString());
+        mediaPlayer = new MediaPlayer(current);
+
+        if(status == Status.playing)
+        { play(); }
+        else
+        { status = Status.stopped; }
     }
 
     public void play()
     {
-        status = "Playing";
+        status = Status.playing;
         mediaPlayer.play();
+    }
+
+    public void toggle()
+    {
+        switch(status)
+        {
+            case paused:
+                play();
+                break;
+            case playing:
+                stop();
+                break;
+            case stopped:
+                play();
+                break;
+        }
+    }
+
+
+    public void stop()
+    {
+        status = Status.paused;
+        mediaPlayer.pause();
     }
 
     public void skipSong()
     {
         mediaPlayer.stop();
+
         currentIndex++;
         currentSong = songs.get(currentIndex);
         current = new Media(files[currentIndex].toURI().toString());
         mediaPlayer = new MediaPlayer(current);
-        play();
+
+        if(status == Status.playing)
+        { play(); }
+        else
+        { status = Status.stopped; }
     }
+
+    public void back()
+    {
+        mediaPlayer.stop();
+
+        currentIndex--;
+        currentSong = songs.get(currentIndex);
+        current = new Media(files[currentIndex].toURI().toString());
+        mediaPlayer = new MediaPlayer(current);
+
+        if(status == Status.playing)
+        { play(); }
+        else
+        { status = Status.stopped; }
+    }
+
 
     public Image getThisAlbumArtwork()
     {
         try
         {
+            Image img = getAlbumArtwork(currentSong);
+            System.out.println(img.getHeight());
+            System.out.println(img.getWidth());
             return getAlbumArtwork(currentSong);
         }
         catch(IOException e)
@@ -124,7 +187,6 @@ public class SongHandler
         return image;
     }
 
-
     private void addSongToList(File file)
     {
         try
@@ -147,7 +209,49 @@ public class SongHandler
 
     public String getStatus()
     {
-        return status;
+        return status.Status;
+    }
+
+    public ArrayList<String> getSongs()
+    {
+        ArrayList<String> songNames = new ArrayList<String>();
+
+        for(File file : files)
+        {
+            songNames.add(file.getName());
+        }
+
+        return songNames;
+    }
+
+    public Duration getTime()
+    {
+        return mediaPlayer.getCurrentTime();
+    }
+
+    public Duration getRunTime()
+    {
+        return mediaPlayer.getTotalDuration();
+    }
+
+    public void setTime(double seconds)
+    {
+//        mediaPlayer.seek(new Duration(6000));
+        mediaPlayer.seek(new Duration(seconds/1000));
+    }
+
+    enum Status
+    {
+        playing("Playing"),
+        stopped("Stopped"),
+        paused("Paused");
+
+        String Status;
+
+        Status(String state)
+        {
+            this.Status = state;
+        }
     }
 
 }
