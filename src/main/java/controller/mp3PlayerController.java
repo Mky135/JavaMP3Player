@@ -59,7 +59,7 @@ public class mp3PlayerController implements Initializable
         playButton.setText(songHandler.getStatus());
         songName.setText(songHandler.getThisSongName());
 
-       startSlider();
+        startSlider();
     }
     
     public void initialize(URL location, ResourceBundle resources)
@@ -77,19 +77,6 @@ public class mp3PlayerController implements Initializable
         slider.setMinorTickCount(1);
         slider.setBlockIncrement(1);
 
-        timer = new Thread(() -> {
-
-            while(songHandler.getStatus().equalsIgnoreCase( "Playing"))
-            {
-                if(songHandler.getTime().toSeconds() % 1 == 0)
-                {
-
-                    slider.setValue((int) songHandler.getTime().toSeconds());
-                    
-                }
-            }
-        });
-
         slider.valueProperty().addListener(e->
                                            {
 //                                               timer.stop();
@@ -102,11 +89,24 @@ public class mp3PlayerController implements Initializable
     }
 
 
+    boolean playing = true;
     public void startSlider()
     {
         slider.setMax(songHandler.getRunTime().toSeconds());
         System.out.println(songHandler.getRunTime().toSeconds());
-        timer.start();
+        new Thread(() -> {
+
+            while(playing)
+            {
+                slider.setMax(songHandler.getRunTime().toSeconds());
+                if(songHandler.getTime().toSeconds() % 1 == 0)
+                {
+
+                    slider.setValue((int) songHandler.getTime().toSeconds());
+
+                }
+            }
+        }).start();
     }
 
 }

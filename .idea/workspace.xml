@@ -3,14 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="694fcf2d-2a2d-405b-bc3c-b124263f974d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/mp3PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/mp3PlayerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utils/SongHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/SongHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/controller/mp3PlayerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/mp3PlayerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utils/SongHandler$Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/SongHandler$Status.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/utils/SongHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/SongHandler.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,7 +23,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
+            <state relative-caret-position="11">
               <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -51,8 +47,8 @@
       <file leaf-file-name="mp3PlayerController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/mp3PlayerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="87" column="17" lean-forward="true" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
+            <state relative-caret-position="220">
+              <caret line="98" column="26" lean-forward="true" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,8 +59,8 @@
       <file leaf-file-name="SongHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/utils/SongHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="236" column="39" lean-forward="true" selection-start-line="236" selection-start-column="39" selection-end-line="236" selection-end-column="39" />
+            <state relative-caret-position="-483">
+              <caret line="146" column="9" lean-forward="true" selection-start-line="146" selection-start-column="9" selection-end-line="146" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3734#3735#0" expanded="true" />
@@ -314,7 +310,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15290000" />
+    <option name="totallyTimeSpent" value="15786000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1366" height="741" extended-state="6" />
@@ -619,18 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
-            <element signature="e#585#586#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/javafx-src.zip!/javafx/util/Duration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
@@ -660,10 +644,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#557#558#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/main.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/utils/SongHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="236" column="39" lean-forward="true" selection-start-line="236" selection-start-column="39" selection-end-line="236" selection-end-column="39" />
+        <state relative-caret-position="-483">
+          <caret line="146" column="9" lean-forward="true" selection-start-line="146" selection-start-column="9" selection-end-line="146" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3734#3735#0" expanded="true" />
@@ -683,18 +687,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/mp3PlayerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="87" column="17" lean-forward="true" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
+        <state relative-caret-position="220">
+          <caret line="98" column="26" lean-forward="true" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

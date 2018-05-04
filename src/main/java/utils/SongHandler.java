@@ -141,9 +141,6 @@ public class SongHandler
     {
         try
         {
-            Image img = getAlbumArtwork(currentSong);
-            System.out.println(img.getHeight());
-            System.out.println(img.getWidth());
             return getAlbumArtwork(currentSong);
         }
         catch(IOException e)
@@ -193,15 +190,7 @@ public class SongHandler
         {
             songs.add(new Mp3File(file.getPath()));
         }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-        catch(UnsupportedTagException e)
-        {
-            e.printStackTrace();
-        }
-        catch(InvalidDataException e)
+        catch(IOException | UnsupportedTagException | InvalidDataException e)
         {
             e.printStackTrace();
         }
