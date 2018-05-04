@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Slider?>
 <AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mp3PlayerController">
    <children>
-      <Label fx:id="songName" alignment="CENTER" layoutX="50.0" layoutY="45.0" prefWidth="300.0" text="Song name" textAlignment="CENTER">
+      <Label fx:id="songName" alignment="CENTER" layoutX="50.0" layoutY="30.0" prefWidth="300.0" text="Song name" textAlignment="CENTER">
          <font>
             <Font name="Avenir Heavy Oblique" size="21.0" />
          </font></Label>
-      <ImageView fx:id="image" fitHeight="168.0" fitWidth="300.0" layoutX="56.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="playButton" layoutX="150.0" layoutY="330.0" mnemonicParsing="false" onAction="#toggle" prefWidth="100" text="Stopped" />
-      <Button layoutX="267.0" layoutY="330.0" mnemonicParsing="false" onAction="#skip" prefWidth="70.0" text="Skip" />
-      <Button layoutX="63.0" layoutY="330.0" mnemonicParsing="false" onAction="#back" prefWidth="70.0" text="Back" />
-      <Slider fx:id="slider" layoutX="54.0" layoutY="85.0" prefHeight="5.0" prefWidth="300.0"/>
-      <ComboBox fx:id="songBox" layoutX="56.0" layoutY="395.0" prefHeight="25.0" prefWidth="300.0" onAction="#playSong"/>
+      <ImageView fx:id="image" fitHeight="170.0" fitWidth="300.0" layoutX="56.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="playButton" layoutX="150.0" layoutY="290.0" mnemonicParsing="false" onAction="#toggle" prefWidth="100" text="Stopped" />
+      <Button layoutX="267.0" layoutY="290.0" mnemonicParsing="false" onAction="#skip" prefWidth="70.0" text="Skip" />
+      <Button layoutX="63.0" layoutY="290.0" mnemonicParsing="false" onAction="#back" prefWidth="70.0" text="Back" />
+      <Slider fx:id="slider" layoutX="56.0" layoutY="70.0" prefHeight="5.0" prefWidth="300.0" />
+      <ComboBox fx:id="songBox" layoutX="56.0" layoutY="340.0" onAction="#playSong" prefHeight="25.0" prefWidth="300.0" />
+      <Button layoutX="0.0" layoutY="0.0" mnemonicParsing="false" text="Shuffle" onAction="#shuffle"/>
    </children>
 </AnchorPane>

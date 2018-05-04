@@ -4,24 +4,25 @@ import com.mpatric.mp3agic.ID3v2;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
-import controller.mp3PlayerController;
+
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-
 import javax.imageio.ImageIO;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SongHandler
 {
     Mp3File currentSong;
-    static File[] files;
+    static ArrayList<File> files;
     static ArrayList<Mp3File> songs;
     Media current;
     MediaPlayer mediaPlayer;
@@ -30,23 +31,42 @@ public class SongHandler
 
     public SongHandler()
     {
-        songs = new ArrayList<Mp3File>();
+        songs = new ArrayList<>();
+        files = new ArrayList<>();
         String user = System.getProperty("user.home");
-        String folder = user + "/Music/iTunes/iTunes Media/Music/Unknown Artist/Electro Swing January 2017";
-        File fFolder = new File(folder);
-        files = fFolder.listFiles();
+        String folder = user + "/Music/iTunes/iTunes Media/Music/Electro Swing/Electro Swing September 2017";
+        String folder1 = user + "/Music/iTunes/iTunes Media/Music/";
+
+        listf(folder);
+//        listf(folder1);
+
+        files.add(new File("/Users/90308982/Music/iTunes/iTunes Media/Music/Willy Wonka/Unknown Album/Willy Wonka - Pure Imagination (Trap Remix).mp3"));
 
         for(File file : files)
         {
             addSongToList(file);
-            System.out.println(file.getName());
+//            System.out.println(file.getName());
         }
 
-        currentIndex = 6;
+        currentIndex = 0;
         currentSong = songs.get(currentIndex);
-        current = new Media(files[currentIndex].toURI().toString());
+        current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
         status = Status.stopped;
+    }
+
+    public void listf(String directoryName)
+    {
+        File directory = new File(directoryName);
+
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if (file.isFile() && file.getName().contains(".mp3")) {
+                files.add(file);
+            } else if (file.isDirectory()) {
+                listf(file.getAbsolutePath());
+            }
+        }
     }
 
     public void playSong(String songName)
@@ -54,9 +74,9 @@ public class SongHandler
         mediaPlayer.stop();
 
         Mp3File song = null;
-        for(int i = 0; i < files.length; i++)
+        for(int i = 0; i < files.size(); i++)
         {
-            if(files[i].getName().equalsIgnoreCase(songName))
+            if(files.get(i).getName().equalsIgnoreCase(songName))
             {
                 song = songs.get(i);
                 break;
@@ -64,7 +84,7 @@ public class SongHandler
         }
         currentIndex = songs.indexOf(song);
         currentSong = songs.get(currentIndex);
-        current = new Media(files[currentIndex].toURI().toString());
+        current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
 
         if(status == Status.playing)
@@ -108,7 +128,7 @@ public class SongHandler
 
         currentIndex++;
         currentSong = songs.get(currentIndex);
-        current = new Media(files[currentIndex].toURI().toString());
+        current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
 
         if(status == Status.playing)
@@ -123,12 +143,46 @@ public class SongHandler
 
         currentIndex--;
         currentSong = songs.get(currentIndex);
-        current = new Media(files[currentIndex].toURI().toString());
+        current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
         if(status == Status.playing)
         { play(); }
         else
         { status = Status.stopped; }
+    }
+
+    public void shuffle()
+    {
+        ArrayList<File> temp = files;
+        System.out.println(temp);
+
+        Collections.shuffle(temp);
+
+        System.out.println(temp);
+
+        ArrayList<Mp3File> tempSongs  = new ArrayList<>();
+
+
+        for(File file : temp)
+        {
+            try
+            {
+                tempSongs.add(new Mp3File(file.getPath()));
+            }
+            catch(IOException | UnsupportedTagException | InvalidDataException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        files = temp;
+        songs = tempSongs;
+
+        currentIndex = 0;
+        currentSong = songs.get(currentIndex);
+        current = new Media(files.get(currentIndex).toURI().toString());
+        mediaPlayer = new MediaPlayer(current);
+        play();
     }
 
 
@@ -152,7 +206,7 @@ public class SongHandler
 
     static String getSongName(Mp3File song)
     {
-        return files[songs.indexOf(song)].getName();
+        return files.get(songs.indexOf(song)).getName();
     }
 
     static Image getAlbumArtwork(Mp3File song) throws IOException
@@ -179,7 +233,7 @@ public class SongHandler
         return image;
     }
 
-    private void addSongToList(File file)
+    private static void addSongToList(File file)
     {
         try
         {
