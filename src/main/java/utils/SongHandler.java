@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+
 import javax.imageio.ImageIO;
 
 import java.awt.image.BufferedImage;
@@ -60,10 +61,14 @@ public class SongHandler
         File directory = new File(directoryName);
 
         File[] fList = directory.listFiles();
-        for (File file : fList) {
-            if (file.isFile() && file.getName().contains(".mp3")) {
+        for(File file : fList)
+        {
+            if(file.isFile() && file.getName().contains(".mp3"))
+            {
                 files.add(file);
-            } else if (file.isDirectory()) {
+            }
+            else if(file.isDirectory())
+            {
                 listf(file.getAbsolutePath());
             }
         }
@@ -127,6 +132,11 @@ public class SongHandler
         mediaPlayer.stop();
 
         currentIndex++;
+        if(currentIndex > songs.size()-1)
+        {
+            currentIndex = 0;
+        }
+
         currentSong = songs.get(currentIndex);
         current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
@@ -141,7 +151,10 @@ public class SongHandler
     {
         mediaPlayer.stop();
 
-        currentIndex--;
+        if(currentIndex > 0)
+        {
+            currentIndex--;
+        }
         currentSong = songs.get(currentIndex);
         current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
@@ -154,14 +167,8 @@ public class SongHandler
     public void shuffle()
     {
         ArrayList<File> temp = files;
-        System.out.println(temp);
-
         Collections.shuffle(temp);
-
-        System.out.println(temp);
-
-        ArrayList<Mp3File> tempSongs  = new ArrayList<>();
-
+        ArrayList<Mp3File> tempSongs = new ArrayList<>();
 
         for(File file : temp)
         {
@@ -183,6 +190,11 @@ public class SongHandler
         current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
         play();
+    }
+
+    public void setVolume(double value)
+    {
+        mediaPlayer.setVolume(value / 100);
     }
 
 
@@ -252,7 +264,7 @@ public class SongHandler
 
     public ArrayList<String> getSongs()
     {
-        ArrayList<String> songNames = new ArrayList<String>();
+        ArrayList<String> songNames = new ArrayList<>();
 
         for(File file : files)
         {
@@ -275,7 +287,7 @@ public class SongHandler
     public void setTime(double seconds)
     {
 //        mediaPlayer.seek(new Duration(6000));
-        mediaPlayer.seek(new Duration(seconds/1000));
+        mediaPlayer.seek(new Duration(seconds / 1000));
     }
 
     public MediaPlayer getMediaPlayer()
