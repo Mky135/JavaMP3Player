@@ -1,10 +1,9 @@
-package utils;
+package player.utils;
 
 import com.mpatric.mp3agic.ID3v2;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
-
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
@@ -12,7 +11,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
-
+import player.MainRunner;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -35,7 +34,7 @@ public class SongHandler
         songs = new ArrayList<>();
         files = new ArrayList<>();
         String user = System.getProperty("user.home");
-        String folder = user + "/Music/iTunes/iTunes Media/Music/Electro Swing/Electro Swing September 2017";
+        String folder = user + "/Music/iTunes/iTunes Media/Music/Unknown Artist/Electro Swing January 2017";
         String folder1 = user + "/Music/iTunes/iTunes Media/Music/";
 
         listf(folder);

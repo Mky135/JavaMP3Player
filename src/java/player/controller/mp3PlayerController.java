@@ -1,4 +1,4 @@
-package controller;
+package player.controller;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-import utils.SongHandler;
+import player.utils.SongHandler;
 
 import java.net.URL;
 import java.util.ResourceBundle;
