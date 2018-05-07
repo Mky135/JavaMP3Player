@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import player.utils.SongHandler;
 
@@ -129,12 +131,10 @@ public class mp3PlayerController implements Initializable
 
         slider.valueProperty().addListener(e ->
                                            {
-//                                               timer.stop();
 //                                               System.out.println(slider.getValue());
 //                                               songHandler.setTime(slider.getValue());
 //                                               slider.setValue(songHandler.getTime().toSeconds());
 //                                               System.out.println(songHandler.getTime().toSeconds());
-//                                               timer.start();
                                            });
 
         totalTime.setText(returnTime(songHandler.getRunTime()));
@@ -224,5 +224,34 @@ public class mp3PlayerController implements Initializable
         songHandler.setVolume(volume.getValue());
         songBox.setValue(songHandler.getThisSongName());
         totalTime.setText(returnTime(songHandler.getRunTime()));
+    }
+
+
+    public void updateOnKey(KeyEvent keyEvent)
+    {
+        switch(keyEvent.getCode())
+        {
+            case F7:
+                back();
+                break;
+            case F8:
+                toggle();
+                break;
+            case F9:
+                skip();
+                break;
+            case F10:
+                volume.setValue(0);
+                songHandler.setVolume(volume.getValue());
+                break;
+            case F11:
+                volume.setValue(volume.getValue() - 10);
+                songHandler.setVolume(volume.getValue());
+                break;
+            case F12:
+                volume.setValue(volume.getValue() + 10);
+                songHandler.setVolume(volume.getValue());
+                break;
+        }
     }
 }

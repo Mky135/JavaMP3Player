@@ -20,6 +20,7 @@ public class MainRunner extends Application
         Parent mainRoot = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         scene = new Scene(mainRoot);
         MainRunner.stage = stage;
+
         // Display the window
         stage.setScene(scene);
         stage.setAlwaysOnTop(true);
