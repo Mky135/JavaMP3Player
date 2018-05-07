@@ -16,7 +16,8 @@ public class MainRunner extends Application
     public void start(Stage stage) throws Exception
     {
         stage.setTitle("Java Mp3 Player");
-        Parent mainRoot = FXMLLoader.load(getClass().getResource("main.fxml"));
+
+        Parent mainRoot = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         scene = new Scene(mainRoot);
         MainRunner.stage = stage;
         // Display the window
@@ -24,9 +25,8 @@ public class MainRunner extends Application
         stage.setAlwaysOnTop(true);
         stage.toFront();
         stage.sizeToScene();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("icon.jpg")));
+        stage.getIcons().add(new Image(MainRunner.class.getResourceAsStream("/images/icon.png")));
         stage.show();
-
     }
 
     public static void main(String[] args)

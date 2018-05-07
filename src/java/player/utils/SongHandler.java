@@ -11,7 +11,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
-import player.MainRunner;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -23,7 +22,6 @@ public class SongHandler
 {
     Mp3File currentSong;
     static ArrayList<File> files;
-    static ArrayList<Mp3File> songs;
     Media current;
     MediaPlayer mediaPlayer;
     int currentIndex;
@@ -31,7 +29,6 @@ public class SongHandler
 
     public SongHandler()
     {
-        songs = new ArrayList<>();
         files = new ArrayList<>();
         String user = System.getProperty("user.home");
         String folder = user + "/Music/iTunes/iTunes Media/Music/Unknown Artist/Electro Swing January 2017";
@@ -42,16 +39,7 @@ public class SongHandler
 
         files.add(new File("/Users/90308982/Music/iTunes/iTunes Media/Music/Willy Wonka/Unknown Album/Willy Wonka - Pure Imagination (Trap Remix).mp3"));
 
-        for(File file : files)
-        {
-            addSongToList(file);
-//            System.out.println(file.getName());
-        }
-
-        currentIndex = 0;
-        currentSong = songs.get(currentIndex);
-        current = new Media(files.get(currentIndex).toURI().toString());
-        mediaPlayer = new MediaPlayer(current);
+        setMediaPlayer(0);
         status = Status.stopped;
     }
 
@@ -73,34 +61,36 @@ public class SongHandler
         }
     }
 
+    private void setCurrentSong(File file)
+    {
+        try
+        {
+            currentSong = new Mp3File(file.getPath());
+        }
+        catch(IOException | UnsupportedTagException | InvalidDataException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public void playSong(String songName)
     {
         mediaPlayer.stop();
 
-        Mp3File song = null;
         for(int i = 0; i < files.size(); i++)
         {
             if(files.get(i).getName().equalsIgnoreCase(songName))
             {
-                song = songs.get(i);
+                setCurrentSong(files.get(i));
+                setMediaPlayer(i);
                 break;
             }
         }
-        currentIndex = songs.indexOf(song);
-        currentSong = songs.get(currentIndex);
-        current = new Media(files.get(currentIndex).toURI().toString());
-        mediaPlayer = new MediaPlayer(current);
 
         if(status == Status.playing)
         { play(); }
         else
         { status = Status.stopped; }
-    }
-
-    public void play()
-    {
-        status = Status.playing;
-        mediaPlayer.play();
     }
 
     public void toggle()
@@ -119,26 +109,19 @@ public class SongHandler
         }
     }
 
-
-    public void stop()
-    {
-        status = Status.paused;
-        mediaPlayer.pause();
-    }
-
     public void skipSong()
     {
         mediaPlayer.stop();
 
         currentIndex++;
-        if(currentIndex > songs.size()-1)
+        if(currentIndex > files.size() - 1)
         {
-            currentIndex = 0;
+            setMediaPlayer(0);
         }
-
-        currentSong = songs.get(currentIndex);
-        current = new Media(files.get(currentIndex).toURI().toString());
-        mediaPlayer = new MediaPlayer(current);
+        else
+        {
+            setMediaPlayer(currentIndex);
+        }
 
         if(status == Status.playing)
         { play(); }
@@ -150,45 +133,54 @@ public class SongHandler
     {
         mediaPlayer.stop();
 
-        if(currentIndex > 0)
+        currentIndex--;
+
+        if(currentIndex >= 0)
         {
-            currentIndex--;
+            setMediaPlayer(currentIndex);
         }
-        currentSong = songs.get(currentIndex);
-        current = new Media(files.get(currentIndex).toURI().toString());
-        mediaPlayer = new MediaPlayer(current);
+        else
+        {
+            currentIndex = 0;
+        }
+
         if(status == Status.playing)
         { play(); }
         else
         { status = Status.stopped; }
     }
 
+    public void stop()
+    {
+        status = Status.paused;
+        mediaPlayer.pause();
+    }
+
+    public void play()
+    {
+        status = Status.playing;
+        mediaPlayer.play();
+    }
+
     public void shuffle()
     {
         ArrayList<File> temp = files;
-        Collections.shuffle(temp);
-        ArrayList<Mp3File> tempSongs = new ArrayList<>();
 
-        for(File file : temp)
-        {
-            try
-            {
-                tempSongs.add(new Mp3File(file.getPath()));
-            }
-            catch(IOException | UnsupportedTagException | InvalidDataException e)
-            {
-                e.printStackTrace();
-            }
-        }
+        Thread thread = new Thread(() -> Collections.shuffle(temp));
+        thread.start();
 
         files = temp;
-        songs = tempSongs;
 
-        currentIndex = 0;
-        currentSong = songs.get(currentIndex);
+        setMediaPlayer(0);
+        play();
+    }
+
+    private void setMediaPlayer(int index)
+    {
+        currentIndex = index;
+        setCurrentSong(files.get(index));
         current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
-        play();
     }
 
     public void setVolume(double value)
@@ -212,15 +204,10 @@ public class SongHandler
 
     public String getThisSongName()
     {
-        return getSongName(currentSong);
+        return files.get(currentIndex).getName();
     }
 
-    static String getSongName(Mp3File song)
-    {
-        return files.get(songs.indexOf(song)).getName();
-    }
-
-    static Image getAlbumArtwork(Mp3File song) throws IOException
+    private static Image getAlbumArtwork(Mp3File song) throws IOException
     {
         byte[] imageData;
         BufferedImage img;
@@ -242,18 +229,6 @@ public class SongHandler
         }
 
         return image;
-    }
-
-    private static void addSongToList(File file)
-    {
-        try
-        {
-            songs.add(new Mp3File(file.getPath()));
-        }
-        catch(IOException | UnsupportedTagException | InvalidDataException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     public String getStatus()

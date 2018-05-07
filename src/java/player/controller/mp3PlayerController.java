@@ -62,7 +62,16 @@ public class mp3PlayerController implements Initializable
 
     public void back()
     {
-        songHandler.back();
+        if(Integer.valueOf(runTime.getText().substring(3)) < 5)
+        {
+            songHandler.back();
+        }
+        else
+        {
+            System.out.println("Restarting song");
+            songHandler.playSong(songHandler.getThisSongName());
+        }
+
         updateUI();
     }
 
@@ -212,6 +221,7 @@ public class mp3PlayerController implements Initializable
         image.setSmooth(true);
         image.setCache(true);
 
+        songHandler.setVolume(volume.getValue());
         songBox.setValue(songHandler.getThisSongName());
         totalTime.setText(returnTime(songHandler.getRunTime()));
     }
