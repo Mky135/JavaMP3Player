@@ -10,24 +10,37 @@ import javafx.stage.Stage;
 
 public class MainRunner extends Application
 {
-    static Scene scene;
-    public static Stage stage;
+    private Scene playerScene;
+    private Scene eqScene;
+    private Stage eqStage;
 
     public void start(Stage stage) throws Exception
     {
+        eqStage = new Stage();
+
+        eqStage.setTitle("Equalizer");
         stage.setTitle("Java Mp3 Player");
 
+        Parent eqRoot = FXMLLoader.load(getClass().getResource("/fxml/equalizer.fxml"));
         Parent mainRoot = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
-        scene = new Scene(mainRoot);
-        MainRunner.stage = stage;
 
-        // Display the window
-        stage.setScene(scene);
-        stage.setAlwaysOnTop(true);
+        eqScene = new Scene(eqRoot);
+        playerScene = new Scene(mainRoot);
+
+        // Display MP3 Player
+        stage.setScene(playerScene);
         stage.toFront();
-        stage.sizeToScene();
         stage.getIcons().add(new Image(MainRunner.class.getResourceAsStream("/images/icon.png")));
         stage.show();
+
+        //Displays Equalizer
+        eqStage.setResizable(false);
+        eqStage.setY(0);
+        eqStage.setX(0);
+        eqStage.setScene(eqScene);
+        eqStage.toFront();
+        eqStage.show();
+
     }
 
     public static void main(String[] args)

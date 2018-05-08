@@ -4,8 +4,10 @@ import com.mpatric.mp3agic.ID3v2;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javafx.scene.media.EqualizerBand;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -16,16 +18,17 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class SongHandler
 {
-    Mp3File currentSong;
-    static ArrayList<File> files;
-    Media current;
-    MediaPlayer mediaPlayer;
-    int currentIndex;
-    Status status;
+    private Mp3File currentSong;
+    private ArrayList<File> files;
+    private MediaPlayer mediaPlayer;
+    private int currentIndex;
+    private Status status;
+    private ObservableList<EqualizerBand> bands;
 
     public SongHandler()
     {
@@ -40,10 +43,20 @@ public class SongHandler
         files.add(new File("/Users/90308982/Music/iTunes/iTunes Media/Music/Willy Wonka/Unknown Album/Willy Wonka - Pure Imagination (Trap Remix).mp3"));
 
         setMediaPlayer(0);
+        bands = mediaPlayer.getAudioEqualizer().getBands();
+        mediaPlayer.getAudioEqualizer().setEnabled(true);
         status = Status.stopped;
     }
 
-    public void listf(String directoryName)
+    public void setBand(int index, double gain)
+    {
+        EqualizerBand band = mediaPlayer.getAudioEqualizer().getBands().get(index);
+        band.setGain(gain);
+        mediaPlayer.getAudioEqualizer().getBands().set(index, band);
+
+    }
+
+    private void listf(String directoryName)
     {
         File directory = new File(directoryName);
 
@@ -109,7 +122,7 @@ public class SongHandler
         }
     }
 
-    public void skipSong()
+        public void skipSong()
     {
         mediaPlayer.stop();
 
@@ -156,7 +169,7 @@ public class SongHandler
         mediaPlayer.pause();
     }
 
-    public void play()
+    private void play()
     {
         status = Status.playing;
         mediaPlayer.play();
@@ -179,7 +192,7 @@ public class SongHandler
     {
         currentIndex = index;
         setCurrentSong(files.get(index));
-        current = new Media(files.get(currentIndex).toURI().toString());
+        Media current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
     }
 

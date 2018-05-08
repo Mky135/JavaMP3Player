@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.controller.mp3PlayerController" onKeyPressed="#updateOnKey">
+<AnchorPane onKeyPressed="#updateOnKey" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.controller.mp3PlayerController">
     <children>
         <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#shuffle" text="Shuffle" />
 
@@ -33,6 +33,7 @@
       </Label>
       <Label fx:id="runTime" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="80.0" text="00:00" textAlignment="CENTER" />
       <Label fx:id="totalTime" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="80.0" text="00:00" textAlignment="CENTER" />
+      <!--<Button layoutX="355.0" layoutY="10.0" mnemonicParsing="false" text="EQ" />-->
 
     </children>
 </AnchorPane>
