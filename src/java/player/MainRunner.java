@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import player.controller.EqualizerController;
 
 
 public class MainRunner extends Application
@@ -40,7 +41,6 @@ public class MainRunner extends Application
         eqStage.setScene(eqScene);
         eqStage.toFront();
         eqStage.show();
-
     }
 
     public static void main(String[] args)

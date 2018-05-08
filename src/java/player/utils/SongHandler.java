@@ -18,8 +18,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 
 public class SongHandler
 {
@@ -28,7 +28,8 @@ public class SongHandler
     private MediaPlayer mediaPlayer;
     private int currentIndex;
     private Status status;
-    private ObservableList<EqualizerBand> bands;
+    private double[] gains;
+    private boolean on = false;
 
     public SongHandler()
     {
@@ -43,9 +44,15 @@ public class SongHandler
         files.add(new File("/Users/90308982/Music/iTunes/iTunes Media/Music/Willy Wonka/Unknown Album/Willy Wonka - Pure Imagination (Trap Remix).mp3"));
 
         setMediaPlayer(0);
-        bands = mediaPlayer.getAudioEqualizer().getBands();
-        mediaPlayer.getAudioEqualizer().setEnabled(true);
         status = Status.stopped;
+
+        mediaPlayer.getAudioEqualizer().setEnabled(on);
+        gains = new double[mediaPlayer.getAudioEqualizer().getBands().size()];
+    }
+
+    public void toggleEQ()
+    {
+        mediaPlayer.getAudioEqualizer().setEnabled(on = !on);
     }
 
     public void setBand(int index, double gain)
@@ -53,7 +60,6 @@ public class SongHandler
         EqualizerBand band = mediaPlayer.getAudioEqualizer().getBands().get(index);
         band.setGain(gain);
         mediaPlayer.getAudioEqualizer().getBands().set(index, band);
-
     }
 
     private void listf(String directoryName)
@@ -61,7 +67,7 @@ public class SongHandler
         File directory = new File(directoryName);
 
         File[] fList = directory.listFiles();
-        for(File file : fList)
+        for(File file : Objects.requireNonNull(fList))
         {
             if(file.isFile() && file.getName().contains(".mp3"))
             {
@@ -122,9 +128,10 @@ public class SongHandler
         }
     }
 
-        public void skipSong()
+    public void skipSong()
     {
         mediaPlayer.stop();
+        setGains(mediaPlayer.getAudioEqualizer().getBands());
 
         currentIndex++;
         if(currentIndex > files.size() - 1)
@@ -136,6 +143,7 @@ public class SongHandler
             setMediaPlayer(currentIndex);
         }
 
+        setMediaPlayerBands();
         if(status == Status.playing)
         { play(); }
         else
@@ -145,9 +153,9 @@ public class SongHandler
     public void back()
     {
         mediaPlayer.stop();
+        setGains(mediaPlayer.getAudioEqualizer().getBands());
 
         currentIndex--;
-
         if(currentIndex >= 0)
         {
             setMediaPlayer(currentIndex);
@@ -157,10 +165,43 @@ public class SongHandler
             currentIndex = 0;
         }
 
+        setMediaPlayerBands();
+
         if(status == Status.playing)
         { play(); }
         else
         { status = Status.stopped; }
+    }
+
+    private void setGains(ObservableList<EqualizerBand> bands)
+    {
+        for(int i=0; i<bands.size(); i++)
+        {
+            gains[i] = bands.get(i).getGain();
+        }
+    }
+
+    private void setMediaPlayerBands()
+    {
+        System.out.println(mediaPlayer.getAudioEqualizer().getBands().toString());
+        mediaPlayer.play();
+        try
+        {
+            Thread.sleep(255);
+        }
+        catch(InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        mediaPlayer.stop();
+
+        for(int i=0; i<gains.length; i++)
+        {
+            setBand(i, gains[i]);
+        }
+
+        System.out.println(mediaPlayer.getAudioEqualizer().getBands().toString());
     }
 
     public void stop()
@@ -201,6 +242,10 @@ public class SongHandler
         mediaPlayer.setVolume(value / 100);
     }
 
+    public ObservableList<EqualizerBand> getMediaBand()
+    {
+        return mediaPlayer.getAudioEqualizer().getBands();
+    }
 
     public Image getThisAlbumArtwork()
     {
@@ -282,18 +327,5 @@ public class SongHandler
         return mediaPlayer;
     }
 
-    enum Status
-    {
-        playing("Playing"),
-        stopped("Stopped"),
-        paused("Paused");
-
-        String Status;
-
-        Status(String state)
-        {
-            this.Status = state;
-        }
-    }
 
 }

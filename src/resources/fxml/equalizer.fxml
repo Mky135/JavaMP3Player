@@ -1,93 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.controller.equalizerController">
+<AnchorPane prefHeight="175.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.controller.EqualizerController">
     <children>
 
-        <Line endX="150.0" layoutX="175.0" layoutY="12.0" startX="-120.0" />
-        <Line endX="150.0" layoutX="175.0" layoutY="27.0" startX="-120.0" />
-        <Line endX="150.0" layoutX="175.0" layoutY="42.0" startX="-120.0" />
-        <Line endX="150.0" layoutX="175.0" layoutY="57.0" startX="-120.0" />
+        <Line endX="150.0" layoutX="175.0" layoutY="47.0" startX="-120.0" />
+        <Line endX="150.0" layoutX="175.0" layoutY="62.0" startX="-120.0" />
+        <Line endX="150.0" layoutX="175.0" layoutY="77.0" startX="-120.0" />
+        <Line endX="150.0" layoutX="175.0" layoutY="92.0" startX="-120.0" />
 
-        <Line endX="150.0" layoutX="175.0" layoutY="72.0" startX="-120.0" strokeWidth="2" />
+        <Line endX="150.0" layoutX="175.0" layoutY="107.0" startX="-120.0" strokeWidth="2" />
 
-        <Line endX="150.0" layoutX="175.0" layoutY="87.0" startX="-120.0" />
-        <Line endX="150.0" layoutX="175.0" layoutY="102.0" startX="-120.0" />
-        <Line endX="150.0" layoutX="175.0" layoutY="117.0" startX="-120.0" />
-        <Line endX="150.0" layoutX="175.0" layoutY="132.0" startX="-120.0" />
+        <Line endX="150.0" layoutX="175.0" layoutY="122.0" startX="-120.0" />
+        <Line endX="150.0" layoutX="175.0" layoutY="137.0" startX="-120.0" />
+        <Line endX="150.0" layoutX="175.0" layoutY="152.0" startX="-120.0" />
+        <Line endX="150.0" layoutX="175.0" layoutY="167.0" startX="-120.0" />
 
-        <Slider layoutX="60.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" fx:id="zeroBar"/>
-        <Slider layoutX="90.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" fx:id="oneBar"/>
-        <Slider layoutX="120.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" fx:id="twoBar"/>
-        <Slider layoutX="150.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" fx:id="threeBar"/>
-        <Slider layoutX="180.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" fx:id="fourBar"/>
-        <Slider layoutX="210.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" fx:id="fiveBar"/>
-        <Slider layoutX="240.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" fx:id="sixBar"/>
-        <Slider layoutX="270.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" fx:id="sevenBar"/>
-        <Slider layoutX="300.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" fx:id="eightBar"/>
+        <Slider fx:id="zeroBar" layoutX="60.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
+        <Slider fx:id="oneBar" layoutX="90.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
+        <Slider fx:id="twoBar" layoutX="120.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
+        <Slider fx:id="threeBar" layoutX="150.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
+        <Slider fx:id="fourBar" layoutX="180.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
+        <Slider fx:id="fiveBar" layoutX="210.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
+        <Slider fx:id="sixBar" layoutX="240.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
+        <Slider fx:id="sevenBar" layoutX="270.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
+        <Slider fx:id="eightBar" layoutX="300.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
 
-        <Label alignment="CENTER" layoutX="5.0" layoutY="5" text="+12 dB" textAlignment="CENTER" prefHeight="12.0"/>
-        <Label alignment="CENTER" layoutX="17.0" layoutY="65" text="0 dB" textAlignment="CENTER" prefHeight="12.0"/>
-        <Label alignment="CENTER" layoutX="5.0" layoutY="125" text="-12 dB" textAlignment="CENTER" prefHeight="12.0"/>
+        <Label alignment="CENTER" layoutX="5.0" layoutY="39" prefHeight="12.0" text="+12 dB" textAlignment="CENTER" />
+        <Label alignment="CENTER" layoutX="17.0" layoutY="99" prefHeight="12.0" text="0 dB" textAlignment="CENTER" />
+        <Label alignment="CENTER" layoutX="5.0" layoutY="159" prefHeight="12.0" text="-12 dB" textAlignment="CENTER" />
 
-        <Label alignment="CENTER" layoutX="60.0" layoutY="140" prefWidth="20" text="32" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="60.0" layoutY="175" prefWidth="20" text="32" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
 
-        <Label alignment="CENTER" layoutX="90.0" layoutY="140" prefWidth="20" text="64" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="90.0" layoutY="175" prefWidth="20" text="64" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
 
-        <Label alignment="CENTER" layoutX="120.0" layoutY="140" prefWidth="20" text="125" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="120.0" layoutY="175" prefWidth="20" text="125" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
 
-        <Label alignment="CENTER" layoutX="150.0" layoutY="140" prefWidth="20" text="500" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="150.0" layoutY="175" prefWidth="20" text="250" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
 
-        <Label alignment="CENTER" layoutX="180.0" layoutY="140" prefWidth="20" text="1K" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="180.0" layoutY="175" prefWidth="20" text="500" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
 
-        <Label alignment="CENTER" layoutX="210.0" layoutY="140" prefWidth="20" text="2K" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="210.0" layoutY="175" prefWidth="20" text="1K" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
 
-        <Label alignment="CENTER" layoutX="240.0" layoutY="140" prefWidth="20" text="4K" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="240.0" layoutY="175" prefWidth="20" text="2K" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
 
-        <Label alignment="CENTER" layoutX="270.0" layoutY="140" prefWidth="20" text="8K" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="270.0" layoutY="175" prefWidth="20" text="4K" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
 
-        <Label alignment="CENTER" layoutX="300.0" layoutY="140" prefWidth="20" text="16K" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="300.0" layoutY="175" prefWidth="20" text="8K" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
+
+        <ComboBox fx:id="modeBox" layoutX="55.0" layoutY="5.0" prefWidth="150.0" promptText="Manuel" onAction="#setEq"/>
+      <CheckBox fx:id="on" layoutX="249.0" layoutY="10.0" mnemonicParsing="false" onAction="#toggleEQ" text="On" />
 
     </children>
 </AnchorPane>
