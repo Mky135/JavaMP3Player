@@ -4,6 +4,7 @@ import com.mpatric.mp3agic.ID3v2;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
@@ -59,7 +60,7 @@ public class SongHandler
     {
         EqualizerBand band = mediaPlayer.getAudioEqualizer().getBands().get(index);
         band.setGain(gain);
-        mediaPlayer.getAudioEqualizer().getBands().set(index, band);
+        Platform.runLater(() -> mediaPlayer.getAudioEqualizer().getBands().set(index, band));
     }
 
     private void listf(String directoryName)
@@ -175,7 +176,7 @@ public class SongHandler
 
     private void setGains(ObservableList<EqualizerBand> bands)
     {
-        for(int i=0; i<bands.size(); i++)
+        for(int i = 0; i < bands.size(); i++)
         {
             gains[i] = bands.get(i).getGain();
         }
@@ -196,7 +197,7 @@ public class SongHandler
 
         mediaPlayer.stop();
 
-        for(int i=0; i<gains.length; i++)
+        for(int i = 0; i < gains.length; i++)
         {
             setBand(i, gains[i]);
         }

@@ -1,5 +1,8 @@
 package player.controller;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
+import javafx.util.Duration;
 import player.utils.EqualizerSettings;
 
 import java.net.URL;
@@ -60,7 +64,7 @@ public class EqualizerController implements Initializable
     {
         sliders = new Slider[] { zeroBar, oneBar, twoBar, threeBar, fourBar, fiveBar, sixBar, sevenBar, eightBar };
 
-        addSlidersListener();
+        refeshBandsOnTimer();
         modeBox.setItems(getNames());
     }
 
@@ -89,7 +93,7 @@ public class EqualizerController implements Initializable
             int finalI = i;
             double gain = gains[i];
             Platform.runLater(() -> sliders[finalI].setValue(gain));
-            songHandler.setBand(finalI, gain);
+            Platform.runLater(() -> songHandler.setBand(finalI, gain));
         }
 
         modeBox.setValue(modeBox.getValue());
@@ -100,7 +104,7 @@ public class EqualizerController implements Initializable
         modeBox.setValue(manuel.getName());
         double[] gains = manuel.getGains();
 
-        for(int i = 0; i < gains.length-1; i++)
+        for(int i = 0; i < gains.length - 1; i++)
         {
             gains[i] = sliders[i].getValue();
         }
@@ -120,13 +124,18 @@ public class EqualizerController implements Initializable
         return FXCollections.observableArrayList(strings);
     }
 
-    private void addSlidersListener()
+    private void refeshBandsOnTimer()
     {
-        for(int i = 0; i < sliders.length; i++)
-        {
-            int finalI = i;
-            sliders[i].valueProperty().addListener(e -> songHandler.setBand(finalI, sliders[finalI].getValue()));
-        }
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            for(int i = 0; i < sliders.length; i++)
+            {
+                final int finalI = i;
+                Platform.runLater(() -> songHandler.setBand(finalI, sliders[finalI].getValue()));
+            }
+        }));
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     public void toggleEQ()
