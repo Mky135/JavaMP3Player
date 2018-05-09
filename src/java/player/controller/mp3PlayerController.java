@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import player.MainRunner;
 import player.utils.SongHandler;
 
 import java.net.URL;
@@ -48,6 +49,8 @@ public class mp3PlayerController implements Initializable
     @FXML
     Label totalTime;
 
+    private boolean eq = false;
+
     public void toggle()
     {
         songHandler.toggle();
@@ -55,6 +58,11 @@ public class mp3PlayerController implements Initializable
         updateUI();
 
         startSlider();
+    }
+
+    public void toggleEq()
+    {
+        MainRunner.setEQStageShow(eq = !eq);
     }
 
     public void skip()

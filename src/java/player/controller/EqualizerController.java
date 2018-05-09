@@ -10,10 +10,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import player.utils.EqualizerSettings;
 
-import javax.jws.WebParam;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import static player.controller.mp3PlayerController.songHandler;
@@ -70,23 +68,20 @@ public class EqualizerController implements Initializable
     {
         double[] gains = manuel.getGains();
 
-        switch(modeBox.getValue().toLowerCase())
+        if(modeBox.getValue().equals("manuel"))
         {
-            case "manuel":
-                setManuel();
-                break;
-            case "acoustic":
-                gains = EqualizerSettings.acoustic.getGains();
-                break;
-            case "bass booster":
-                gains = EqualizerSettings.bassBooster.getGains();
-                break;
-            case "bass reducer":
-                gains = EqualizerSettings.bassReducer.getGains();
-                break;
-            case "flat":
-                gains = EqualizerSettings.flat.getGains();
-                break;
+            setManuel();
+        }
+        else
+        {
+            for(EqualizerSettings settings : EqualizerSettings.values())
+            {
+                if(settings.getName().equalsIgnoreCase(modeBox.getValue()))
+                {
+                    gains = settings.getGains();
+                    break;
+                }
+            }
         }
 
         for(int i = 0; i < gains.length - 1; i++)
@@ -130,10 +125,7 @@ public class EqualizerController implements Initializable
         for(int i = 0; i < sliders.length; i++)
         {
             int finalI = i;
-            sliders[i].valueProperty().addListener(e -> {
-                songHandler.setBand(finalI, sliders[finalI].getValue());
-//                setManuel();
-            });
+            sliders[i].valueProperty().addListener(e -> songHandler.setBand(finalI, sliders[finalI].getValue()));
         }
     }
 

@@ -13,7 +13,7 @@ public class MainRunner extends Application
 {
     private Scene playerScene;
     private Scene eqScene;
-    private Stage eqStage;
+    private static Stage eqStage;
 
     public void start(Stage stage) throws Exception
     {
@@ -40,11 +40,18 @@ public class MainRunner extends Application
         eqStage.setX(0);
         eqStage.setScene(eqScene);
         eqStage.toFront();
-        eqStage.show();
     }
 
     public static void main(String[] args)
     {
         launch(args);
+    }
+
+    public static void setEQStageShow(boolean visable)
+    {
+        if(visable)
+            eqStage.show();
+        else
+            eqStage.hide();
     }
 }
