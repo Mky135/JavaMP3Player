@@ -60,7 +60,21 @@ public class SongHandler
     {
         EqualizerBand band = mediaPlayer.getAudioEqualizer().getBands().get(index);
         band.setGain(gain);
-        Platform.runLater(() -> mediaPlayer.getAudioEqualizer().getBands().set(index, band));
+        switch(mediaPlayer.getStatus())
+        {
+            case READY:
+                Platform.runLater(() -> mediaPlayer.getAudioEqualizer().getBands().set(index, band));
+                break;
+            case PLAYING:
+                Platform.runLater(() -> mediaPlayer.getAudioEqualizer().getBands().set(index, band));
+                break;
+            case STOPPED:
+                Platform.runLater(() -> mediaPlayer.getAudioEqualizer().getBands().set(index, band));
+                break;
+            case PAUSED:
+                Platform.runLater(() -> mediaPlayer.getAudioEqualizer().getBands().set(index, band));
+                break;
+        }
     }
 
     private void listf(String directoryName)
@@ -132,7 +146,7 @@ public class SongHandler
     public void skipSong()
     {
         mediaPlayer.stop();
-        setGains(mediaPlayer.getAudioEqualizer().getBands());
+//        setGains(mediaPlayer.getAudioEqualizer().getBands());
 
         currentIndex++;
         if(currentIndex > files.size() - 1)
@@ -144,7 +158,7 @@ public class SongHandler
             setMediaPlayer(currentIndex);
         }
 
-        setMediaPlayerBands();
+//        setMediaPlayerBands();
         if(status == Status.playing)
         { play(); }
         else
@@ -166,7 +180,7 @@ public class SongHandler
             currentIndex = 0;
         }
 
-        setMediaPlayerBands();
+//        setMediaPlayerBands();
 
         if(status == Status.playing)
         { play(); }
@@ -236,6 +250,7 @@ public class SongHandler
         setCurrentSong(files.get(index));
         Media current = new Media(files.get(currentIndex).toURI().toString());
         mediaPlayer = new MediaPlayer(current);
+//        mediaPlayer.getAudioEqualizer().setEnabled(on);
     }
 
     public void setVolume(double value)

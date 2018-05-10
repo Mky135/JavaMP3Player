@@ -64,7 +64,7 @@ public class EqualizerController implements Initializable
     {
         sliders = new Slider[] { zeroBar, oneBar, twoBar, threeBar, fourBar, fiveBar, sixBar, sevenBar, eightBar };
 
-        refeshBandsOnTimer();
+        refreshBandsOnTimer();
         modeBox.setItems(getNames());
     }
 
@@ -124,7 +124,7 @@ public class EqualizerController implements Initializable
         return FXCollections.observableArrayList(strings);
     }
 
-    private void refeshBandsOnTimer()
+    private void refreshBandsOnTimer()
     {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             for(int i = 0; i < sliders.length; i++)
