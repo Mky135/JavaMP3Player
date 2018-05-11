@@ -23,15 +23,15 @@
         <Line endX="150.0" layoutX="175.0" layoutY="152.0" startX="-120.0" />
         <Line endX="150.0" layoutX="175.0" layoutY="167.0" startX="-120.0" />
 
-        <Slider fx:id="zeroBar" layoutX="60.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
-        <Slider fx:id="oneBar" layoutX="90.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
-        <Slider fx:id="twoBar" layoutX="120.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
-        <Slider fx:id="threeBar" layoutX="150.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
-        <Slider fx:id="fourBar" layoutX="180.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
-        <Slider fx:id="fiveBar" layoutX="210.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
-        <Slider fx:id="sixBar" layoutX="240.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
-        <Slider fx:id="sevenBar" layoutX="270.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
-        <Slider fx:id="eightBar" layoutX="300.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" onMousePressed="#setManuel"/>
+        <Slider fx:id="zeroBar" layoutX="60.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" />
+        <Slider fx:id="oneBar" layoutX="90.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" />
+        <Slider fx:id="twoBar" layoutX="120.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" />
+        <Slider fx:id="threeBar" layoutX="150.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" />
+        <Slider fx:id="fourBar" layoutX="180.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" />
+        <Slider fx:id="fiveBar" layoutX="210.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" />
+        <Slider fx:id="sixBar" layoutX="240.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" />
+        <Slider fx:id="sevenBar" layoutX="270.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" />
+        <Slider fx:id="eightBar" layoutX="300.0" layoutY="35.0" max="12" min="-12" orientation="VERTICAL" prefHeight="144" prefWidth="20" />
 
         <Label alignment="CENTER" layoutX="5.0" layoutY="39" prefHeight="12.0" text="+12 dB" textAlignment="CENTER" />
         <Label alignment="CENTER" layoutX="17.0" layoutY="99" prefHeight="12.0" text="0 dB" textAlignment="CENTER" />
@@ -91,7 +91,7 @@
             </font>
         </Label>
 
-        <ComboBox fx:id="modeBox" layoutX="55.0" layoutY="5.0" prefWidth="150.0" promptText="Manuel" onAction="#setEq"/>
+        <ComboBox fx:id="modeBox" layoutX="55.0" layoutY="5.0" prefWidth="150.0" promptText="Acoustic" onAction="#setEq"/>
       <CheckBox fx:id="on" layoutX="249.0" layoutY="10.0" mnemonicParsing="false" onAction="#toggleEQ" text="On" />
 
     </children>

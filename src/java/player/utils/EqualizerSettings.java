@@ -2,7 +2,7 @@ package player.utils;
 
 public enum EqualizerSettings
 {
-    manuel("Manuel"),
+//    manuel("Manuel"),
     acoustic("Acoustic", 5, 5, 4, 1.5, 2, 2, 4, 4.5, 4, 2),
     bassBooster("Bass Booster", 6, 4.5, 3.5, 3, 1.5),
     bassReducer("Bass Reducer", bassBooster),

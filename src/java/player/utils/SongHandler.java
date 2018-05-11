@@ -56,6 +56,12 @@ public class SongHandler
         mediaPlayer.getAudioEqualizer().setEnabled(on = !on);
     }
 
+    public void setEQ(boolean on)
+    {
+        this.on = on;
+        mediaPlayer.getAudioEqualizer().setEnabled(on);
+    }
+
     public void setBand(int index, double gain)
     {
         EqualizerBand band = mediaPlayer.getAudioEqualizer().getBands().get(index);
@@ -263,6 +269,30 @@ public class SongHandler
         return mediaPlayer.getAudioEqualizer().getBands();
     }
 
+    public String getArtistName()
+    {
+        if(currentSong.getId3v2Tag().getArtist() != null)
+        {
+            return currentSong.getId3v2Tag().getArtist();
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+    public String getAlbumName()
+    {
+        if(currentSong.getId3v2Tag().getAlbum() != null)
+        {
+            return currentSong.getId3v2Tag().getAlbum();
+        }
+        else
+        {
+            return "";
+        }
+    }
+
     public Image getThisAlbumArtwork()
     {
         try
@@ -273,6 +303,7 @@ public class SongHandler
         {
             e.printStackTrace();
         }
+
         return null;
     }
 
@@ -285,7 +316,7 @@ public class SongHandler
     {
         byte[] imageData;
         BufferedImage img;
-        Image image;
+        Image image = null;
 
         if(song.hasId3v2Tag())
         {
@@ -297,17 +328,13 @@ public class SongHandler
             File outputfile = new File("image.jpg");
             ImageIO.write(img, "jpg", outputfile);
         }
-        else
-        {
-            image = null;
-        }
 
         return image;
     }
 
-    public String getStatus()
+    public Status getStatus()
     {
-        return status.Status;
+        return status;
     }
 
     public ArrayList<String> getSongs()
@@ -342,6 +369,4 @@ public class SongHandler
     {
         return mediaPlayer;
     }
-
-
 }

@@ -52,9 +52,7 @@ public class mp3PlayerController implements Initializable
     public void toggle()
     {
         songHandler.toggle();
-        System.out.println(songHandler.getStatus());
         updateUI();
-
         startSlider();
     }
 
@@ -67,6 +65,7 @@ public class mp3PlayerController implements Initializable
     {
         songHandler.skipSong();
         updateUI();
+        NotificationController.updateUI();
     }
 
     public void back()
@@ -74,21 +73,20 @@ public class mp3PlayerController implements Initializable
         if(Integer.valueOf(runTime.getText().substring(3)) < 5)
         {
             songHandler.back();
+            NotificationController.updateUI();
         }
         else
         {
-            System.out.println("Restarting song");
             songHandler.playSong(songHandler.getThisSongName());
         }
-
         updateUI();
     }
 
     public void playSong()
     {
         songHandler.playSong(songBox.getValue());
+        NotificationController.updateUI();
         updateUI();
-
         startSlider();
     }
 
@@ -108,6 +106,7 @@ public class mp3PlayerController implements Initializable
         songBox.setItems(FXCollections.observableArrayList(songHandler.getSongs()));
         songBox.setValue(songBox.getItems().get(0));
 
+        NotificationController.updateUI();
         updateUI();
         startSlider();
     }
@@ -148,9 +147,9 @@ public class mp3PlayerController implements Initializable
         updateUI();
     }
 
-    boolean playing = true;
+    private boolean playing = true;
 
-    public void startSlider()
+    private void startSlider()
     {
         slider.setMax(songHandler.getRunTime().toSeconds());
         totalTime.setText(returnTime(songHandler.getRunTime()));
@@ -180,7 +179,7 @@ public class mp3PlayerController implements Initializable
         }).start();
     }
 
-    public String returnTime(Duration duration)
+    private String returnTime(Duration duration)
     {
         StringBuilder time = new StringBuilder();
 
@@ -202,10 +201,17 @@ public class mp3PlayerController implements Initializable
         else
         { time.append((int) duration.toSeconds() % 60); }
 
-        return time.toString();
+        if(time.toString().equalsIgnoreCase("0:0"))
+        {
+            return "00:00";
+        }
+        else
+        {
+            return time.toString();
+        }
     }
 
-    void updateUI()
+    private void updateUI()
     {
         playButton.setText(songHandler.getStatus());
         songName.setText(songHandler.getThisSongName());

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.controller.NotificationController">
+    <children>
+        <ImageView fx:id="artwork" fitHeight="60.0" fitWidth="60.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="90.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/icon.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="songName" layoutX="110.0" layoutY="6.0" prefHeight="13.0" prefWidth="210.0" text="Dance Dance Dizzy Dizzy.mp3">
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Label>
+        <Label fx:id="extras" layoutX="90.0" layoutY="35.0" prefHeight="15.0" prefWidth="230.0" text="Name">
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

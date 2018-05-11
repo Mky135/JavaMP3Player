@@ -33,7 +33,7 @@
       </Label>
       <Label fx:id="runTime" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="80.0" text="00:00" textAlignment="CENTER" />
       <Label fx:id="totalTime" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="80.0" text="00:00" textAlignment="CENTER" />
-      <!--<Button layoutX="315.0" layoutY="10.0" mnemonicParsing="false" text="Equalizer" prefWidth="75" onAction="#toggleEq"/>-->
+      <Button layoutX="315.0" layoutY="10.0" mnemonicParsing="false" text="Equalizer" prefWidth="75" onAction="#toggleEq"/>
 
     </children>
 </AnchorPane>

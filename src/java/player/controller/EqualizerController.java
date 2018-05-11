@@ -57,27 +57,32 @@ public class EqualizerController implements Initializable
 
     private Slider[] sliders;
 
-    private EqualizerSettings manuel = EqualizerSettings.manuel;
+    double[] gains = new double[EqualizerSettings.values().length];
+
+//    private EqualizerSettings manuel = EqualizerSettings.manuel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         sliders = new Slider[] { zeroBar, oneBar, twoBar, threeBar, fourBar, fiveBar, sixBar, sevenBar, eightBar };
 
-        refreshBandsOnTimer();
+//        refreshBandsOnTimer();
+        for(Slider slider : sliders)
+        {
+            slider.setDisable(true);
+        }
         modeBox.setItems(getNames());
     }
 
     public void setEq()
     {
-        double[] gains = manuel.getGains();
 
-        if(modeBox.getValue().equals("manuel"))
-        {
-            setManuel();
-        }
-        else
-        {
+//        if(modeBox.getValue().equals("manuel"))
+//        {
+//            setManuel();
+//        }
+//        else
+//        {
             for(EqualizerSettings settings : EqualizerSettings.values())
             {
                 if(settings.getName().equalsIgnoreCase(modeBox.getValue()))
@@ -86,7 +91,12 @@ public class EqualizerController implements Initializable
                     break;
                 }
             }
-        }
+//        }
+
+//        for(Slider slider : sliders)
+//        {
+//            slider.setDisable(false);
+//        }
 
         for(int i = 0; i < gains.length - 1; i++)
         {
@@ -97,20 +107,25 @@ public class EqualizerController implements Initializable
         }
 
         modeBox.setValue(modeBox.getValue());
+
+//        for(Slider slider : sliders)
+//        {
+//            slider.setDisable(true);
+//        }
     }
 
-    public void setManuel()
-    {
-        modeBox.setValue(manuel.getName());
-        double[] gains = manuel.getGains();
-
-        for(int i = 0; i < gains.length - 1; i++)
-        {
-            gains[i] = sliders[i].getValue();
-        }
-
-        manuel.setGains(gains);
-    }
+//    public void setManuel()
+//    {
+//        modeBox.setValue(manuel.getName());
+//        double[] gains = manuel.getGains();
+//
+//        for(int i = 0; i < gains.length - 1; i++)
+//        {
+//            gains[i] = sliders[i].getValue();
+//        }
+//
+//        manuel.setGains(gains);
+//    }
 
     private ObservableList<String> getNames()
     {
