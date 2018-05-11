@@ -3,12 +3,14 @@ Mp3 Player using JavaFX
 Supports OSX, windows unknown
 
 # Hopes to implement
-* Playlist
+* Playlist handler
 * Better song picker window
-* Notification for when new song starts
-* EQ?
+* Manuel EQ
+* Add a css to improve the overall look
 
-# Current implementation 
+# Features 
+* 100% Java 
 * Volume Slider
 * Album art viewer 
-
+* Notification for when new song starts
+* Equalizer with preloaded settings
