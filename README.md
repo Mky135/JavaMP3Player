@@ -1,6 +1,10 @@
 # JavaMP3Player
 Mp3 Player using JavaFX
+
 Supports OSX, windows unknown
+
+Does not support .wav
+
 
 # Hopes to implement
 * Playlist handler
