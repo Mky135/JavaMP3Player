@@ -66,6 +66,8 @@ public class mp3PlayerController implements Initializable
         songHandler.skipSong();
         updateUI();
         NotificationController.updateUI();
+        EqualizerController.staticOn.setSelected(false);
+        songHandler.setEQ(false);
     }
 
     public void back()
@@ -80,12 +82,18 @@ public class mp3PlayerController implements Initializable
             songHandler.playSong(songHandler.getThisSongName());
         }
         updateUI();
+        NotificationController.updateUI();
+        EqualizerController.staticOn.setSelected(false);
+        songHandler.setEQ(false);
+
     }
 
     public void playSong()
     {
         songHandler.playSong(songBox.getValue());
         NotificationController.updateUI();
+        EqualizerController.staticOn.setSelected(false);
+        songHandler.setEQ(false);
         updateUI();
         startSlider();
     }
@@ -107,6 +115,8 @@ public class mp3PlayerController implements Initializable
         songBox.setValue(songBox.getItems().get(0));
 
         NotificationController.updateUI();
+        EqualizerController.staticOn.setSelected(false);
+        songHandler.setEQ(false);
         updateUI();
         startSlider();
     }
@@ -213,7 +223,7 @@ public class mp3PlayerController implements Initializable
 
     private void updateUI()
     {
-        playButton.setText(songHandler.getStatus());
+        playButton.setText(songHandler.getStatus().toString());
         songName.setText(songHandler.getThisSongName());
         songHandler.getMediaPlayer().setOnEndOfMedia((this::skip));
         image.setImage(songHandler.getThisAlbumArtwork());

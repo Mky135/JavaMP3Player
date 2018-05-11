@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import player.MainRunner;
+import player.utils.Status;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,7 +39,10 @@ public class NotificationController implements Initializable
 
     public static void updateUI()
     {
-        MainRunner.setNotifyStageShow();
+        if(songHandler.getStatus() == Status.playing)
+        {
+            MainRunner.setNotifyStageShow();
+        }
 
         if(songHandler.getThisAlbumArtwork() != null)
             staticArtWork.setImage(songHandler.getThisAlbumArtwork());

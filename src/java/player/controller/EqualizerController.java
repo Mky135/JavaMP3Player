@@ -55,6 +55,8 @@ public class EqualizerController implements Initializable
     @FXML
     ComboBox<String> modeBox;
 
+    public static CheckBox staticOn;
+
     private Slider[] sliders;
 
     double[] gains = new double[EqualizerSettings.values().length];
@@ -72,6 +74,8 @@ public class EqualizerController implements Initializable
             slider.setDisable(true);
         }
         modeBox.setItems(getNames());
+
+        staticOn = on;
     }
 
     public void setEq()
