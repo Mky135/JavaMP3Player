@@ -91,7 +91,7 @@
             </font>
         </Label>
 
-        <ComboBox fx:id="modeBox" layoutX="55.0" layoutY="5.0" prefWidth="150.0" promptText="Acoustic" onAction="#setEq"/>
+        <ComboBox fx:id="modeBox" layoutX="55.0" layoutY="5.0" prefWidth="150.0" promptText="Flat" onAction="#setEq"/>
       <CheckBox fx:id="on" layoutX="249.0" layoutY="10.0" mnemonicParsing="false" onAction="#toggleEQ" text="On" />
 
     </children>

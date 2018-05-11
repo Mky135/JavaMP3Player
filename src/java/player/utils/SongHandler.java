@@ -36,13 +36,9 @@ public class SongHandler
     {
         files = new ArrayList<>();
         String user = System.getProperty("user.home");
-        String folder = user + "/Music/iTunes/iTunes Media/Music/Unknown Artist/Electro Swing January 2017";
-        String folder1 = user + "/Music/iTunes/iTunes Media/Music/";
+        PlaylistHandler playlistHandler = new PlaylistHandler(user + "/Documents/workspace/JavaMP3Player/src/resources/playlist/Electro Swing.txt");
 
-        listf(folder);
-//        listf(folder1);
-
-        files.add(new File("/Users/90308982/Music/iTunes/iTunes Media/Music/Willy Wonka/Unknown Album/Willy Wonka - Pure Imagination (Trap Remix).mp3"));
+        files = playlistHandler.getSongs();
 
         setMediaPlayer(0);
         status = Status.stopped;
@@ -368,5 +364,10 @@ public class SongHandler
     public MediaPlayer getMediaPlayer()
     {
         return mediaPlayer;
+    }
+
+    public ArrayList<File> getFiles()
+    {
+        return files;
     }
 }

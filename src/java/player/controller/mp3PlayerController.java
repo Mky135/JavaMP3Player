@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class mp3PlayerController implements Initializable
 {
-    static SongHandler songHandler = new SongHandler();
+    public static SongHandler songHandler = new SongHandler();
 
     @FXML
     Label songName;
