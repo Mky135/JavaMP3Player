@@ -40,6 +40,7 @@ public class MainRunner extends Application
         // Display MP3 Player
         stage.setScene(playerScene);
         stage.toFront();
+        stage.setResizable(false);
         stage.getIcons().add(new Image(MainRunner.class.getResourceAsStream("/images/icon.png")));
         stage.show();
         stage.setOnCloseRequest(e -> Platform.exit());

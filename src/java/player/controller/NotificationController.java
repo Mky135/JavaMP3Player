@@ -48,7 +48,14 @@ public class NotificationController implements Initializable
             staticArtWork.setImage(songHandler.getThisAlbumArtwork());
 
         staticSongName.setText(songHandler.getThisSongName());
-        staticExtras.setText(songHandler.getArtistName() + " - " + songHandler.getAlbumName());
+        if(songHandler.getAlbumName() != "")
+        {
+            staticExtras.setText(songHandler.getArtistName() + " - " + songHandler.getAlbumName());
+        }
+        else
+        {
+            staticExtras.setText(songHandler.getArtistName());
+        }
     }
 
 }

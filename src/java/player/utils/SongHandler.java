@@ -79,24 +79,6 @@ public class SongHandler
         }
     }
 
-    private void listf(String directoryName)
-    {
-        File directory = new File(directoryName);
-
-        File[] fList = directory.listFiles();
-        for(File file : Objects.requireNonNull(fList))
-        {
-            if(file.isFile() && file.getName().contains(".mp3"))
-            {
-                files.add(file);
-            }
-            else if(file.isDirectory())
-            {
-                listf(file.getAbsolutePath());
-            }
-        }
-    }
-
     private void setCurrentSong(File file)
     {
         try
