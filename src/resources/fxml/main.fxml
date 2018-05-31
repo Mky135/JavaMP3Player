@@ -23,17 +23,17 @@
         <Button fx:id="playButton" layoutX="150.0" layoutY="290.0" mnemonicParsing="false" onAction="#toggle" prefWidth="100" text="Stopped" />
         <Button layoutX="267.0" layoutY="290.0" mnemonicParsing="false" onAction="#skip" prefWidth="70.0" text="Skip" />
         <Button layoutX="63.0" layoutY="290.0" mnemonicParsing="false" onAction="#back" prefWidth="70.0" text="Back" />
-        <ComboBox fx:id="songBox" layoutX="56.0" layoutY="340.0" onAction="#playSong" prefHeight="25.0" prefWidth="300.0" />
+        <ComboBox fx:id="songBox" layoutX="54.0" layoutY="412.0" onAction="#playSong" prefHeight="25.0" prefWidth="300.0" />
 
-        <Slider fx:id="volume" layoutX="56.0" layoutY="417.0" prefHeight="5.0" prefWidth="300.0" />
-      <Label fx:id="vLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="383.0" text="Volume: 100%" textAlignment="CENTER">
+        <Slider fx:id="volume" layoutX="54.0" layoutY="375.0" prefHeight="16.0" prefWidth="300.0" />
+      <Label fx:id="vLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="340.0" text="Volume: 100%" textAlignment="CENTER">
          <font>
             <Font name="American Typewriter Bold" size="19.0" />
          </font>
       </Label>
       <Label fx:id="runTime" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="80.0" text="00:00" textAlignment="CENTER" />
       <Label fx:id="totalTime" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="80.0" text="00:00" textAlignment="CENTER" />
-      <Button layoutX="315.0" layoutY="10.0" mnemonicParsing="false" text="Equalizer" prefWidth="75" onAction="#toggleEq"/>
+      <Button layoutX="315.0" layoutY="10.0" mnemonicParsing="false" onAction="#toggleEq" prefWidth="75" text="Equalizer" />
 
     </children>
 </AnchorPane>

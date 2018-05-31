@@ -60,7 +60,7 @@ public class MainRunner extends Application
         notifyStage.setY(40);
         notifyStage.setScene(notifyScene);
         notifyStage.setAlwaysOnTop(true);
-        notifyStage.show();
+//        notifyStage.show();
     }
 
     public static void main(String[] args)
